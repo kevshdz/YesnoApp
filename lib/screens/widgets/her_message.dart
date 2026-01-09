@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/screens/domain/entities/message.dart';
 
 class HerMessage extends StatelessWidget {
-  final String message;
+  final Message message;
   const HerMessage({super.key, required this.message});
-
+  
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
@@ -17,11 +18,12 @@ class HerMessage extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
-            child: Text(message, style: TextStyle(color: Colors.white),),
+            child: Text(message.text, style: TextStyle(color: Colors.white),),
           ),
         ),
         SizedBox(height: 5),
-        _ImageBubble()
+
+        _ImageBubble(message.imgUrl!)
         
       ],
       
@@ -32,14 +34,17 @@ class HerMessage extends StatelessWidget {
 
 
 class _ImageBubble extends StatelessWidget {
+  
+  final String img;
 
+  const _ImageBubble(this.img); 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return ClipRRect(
       borderRadius: BorderRadiusGeometry.circular(20),
       child: Image.network(
-        "https://yesno.wtf/assets/yes/11-a23cbde4ae018bbda812d2d8b2b8fc6c.gif",
+        img,
         width: size.width * 0.7,
         height: 150,
         fit: BoxFit.cover,
