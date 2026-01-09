@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MyMessage extends StatelessWidget {
-  const MyMessage({super.key});
+   final String message;
+  const MyMessage(this.message, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class MyMessage extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
-            child: Text("My Message", style: TextStyle(color: Colors.white),),
+            child: Text(message, style: TextStyle(color: Colors.white),),
           ),
         ),
         SizedBox(height: 10,)

@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class MessageInput extends StatelessWidget {
-  const MessageInput({super.key});
+
+  final ValueChanged <String> onValue;
+
+  const MessageInput(
+    {
+      required this.onValue, 
+      super.key
+    });
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +41,7 @@ class MessageInput extends StatelessWidget {
           onPressed: () {
           final textValue = textController.value.text;
           print("Value $textValue");
-
+          onValue(textValue);
           }
         ),
         
@@ -43,6 +50,7 @@ class MessageInput extends StatelessWidget {
         print("Submit $value");       
         textController.clear(); 
         focusNode.requestFocus();
+        onValue(value);
       }
     );
   }
